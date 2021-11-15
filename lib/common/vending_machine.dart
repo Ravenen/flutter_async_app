@@ -7,8 +7,30 @@ class VendingMachine {
   final int amountOfMoney;
   final List<String> tradeMarks;
 
-  const VendingMachine(this.id, this.name, this.address, this.gpsCoordinates,
-      this.imageUrl, this.amountOfMoney, this.tradeMarks);
+  const VendingMachine(
+      {required this.id,
+      required this.name,
+      required this.address,
+      required this.gpsCoordinates,
+      required this.imageUrl,
+      required this.amountOfMoney,
+      required this.tradeMarks});
+
+  factory VendingMachine.fromJson(Map<String, dynamic> json) {
+    return VendingMachine(
+        id: json["id"],
+        name: json["name"],
+        address:
+            "${json["address"]["street"]["city"]["region"]["country"]["name"]}, "
+            "${json["address"]["street"]["city"]["region"]["name"]}, "
+            "${json["address"]["street"]["city"]["name"]}, "
+            "${json["address"]["street"]["name"]}, "
+            "${json["address"]["building"]}",
+        gpsCoordinates: json["gps_coordinates"],
+        imageUrl: json["image_url"],
+        amountOfMoney: json["amount_of_money"],
+        tradeMarks: json["trade_marks"]);
+  }
 
   @override
   bool operator ==(Object other) => other is VendingMachine && other.id == id;
