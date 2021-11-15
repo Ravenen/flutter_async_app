@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_async_app/screens/vending_machines_page/vending_machines_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: Container(),
+      home: const VendingMachinesPage(),
     );
   }
 }
