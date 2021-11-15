@@ -29,7 +29,7 @@ class VendingMachine {
         gpsCoordinates: json["gps_coordinates"],
         imageUrl: json["image_url"],
         amountOfMoney: json["amount_of_money"],
-        tradeMarks: json["trade_marks"]);
+        tradeMarks: List.from(json["trade_marks"]));
   }
 
   @override
