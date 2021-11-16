@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import 'orders_placed_bloc.dart';
+import '../common/orders_placed_bloc.dart';
 
 class OrdersPlacedCard extends StatelessWidget {
   OrdersPlacedCard({Key? key}) : super(key: key);

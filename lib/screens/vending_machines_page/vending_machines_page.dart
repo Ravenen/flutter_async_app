@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_async_app/common/orders_placed_card.dart';
+import 'package:flutter_async_app/screens/orders_placed_card.dart';
 import 'package:flutter_async_app/screens/vending_machines_page/vending_machines_cards_list.dart';
 
 class VendingMachinesPage extends StatelessWidget {
