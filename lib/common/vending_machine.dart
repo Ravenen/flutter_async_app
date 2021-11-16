@@ -4,7 +4,7 @@ class VendingMachine {
   final String address;
   final String gpsCoordinates;
   final String imageUrl;
-  final int amountOfMoney;
+  final double amountOfMoney;
   final List<String> tradeMarks;
 
   const VendingMachine(
