@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_async_app/common/orders_placed_event.dart';
 import 'package:provider/provider.dart';
 
 import '../common/orders_placed_bloc.dart';
@@ -40,7 +41,11 @@ class OrdersPlacedCard extends StatelessWidget {
                 'Clear',
                 style: TextStyle(fontSize: 18.0),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Provider.of<OrdersPlacedBloc>(context, listen: false)
+                    .ordersPlacedEventSink
+                    .add(ClearEvent());
+              },
             )
           ],
         ),
