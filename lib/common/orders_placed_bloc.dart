@@ -1,16 +1,18 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:async/async.dart';
 import 'package:flutter_async_app/common/orders_placed_event.dart';
 
 class OrdersPlacedBloc {
   int _ordersPlaced = 0;
 
-  final _ordersPlacedStateController = StreamController<int>();
+  final _ordersPlacedStateController = StreamController<int>.broadcast();
 
   StreamSink<int> get _inOrdersPlaced => _ordersPlacedStateController.sink;
 
-  Stream<int> get ordersPlaced => _ordersPlacedStateController.stream;
+  Stream<int> get ordersPlaced => StreamGroup.merge(
+      [_ordersPlacedStateController.stream, _createIncrementingStream()]);
 
   final _ordersPlacedEventController = StreamController<OrdersPlacedEvent>();
 
@@ -19,7 +21,6 @@ class OrdersPlacedBloc {
 
   OrdersPlacedBloc() {
     _inOrdersPlaced.add(_ordersPlaced);
-    _inOrdersPlaced.addStream(_createIncrementingStream());
     _ordersPlacedEventController.stream.listen(_mapEventToState);
   }
 
