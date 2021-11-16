@@ -11,7 +11,7 @@ class VendingMachinesPage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-            padding: const EdgeInsets.all(15),
+            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
             child: Column(
               children: [
                 OrdersPlacedCard(ordersNumber: 20),

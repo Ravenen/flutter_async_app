@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_async_app/common/vending_machine.dart';
+import 'package:flutter_async_app/screens/vending_machines_page/vending_machine_card.dart';
 
 class VendingMachinesCardsList extends StatefulWidget {
   const VendingMachinesCardsList({Key? key}) : super(key: key);
@@ -40,9 +41,7 @@ class _VendingMachinesCardsListState extends State<VendingMachinesCardsList> {
               child: ListView.builder(
                 itemCount: snapshot.data!.length,
                 itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(snapshot.data![index].name),
-                  );
+                  return VendingMachineCard(vendingMachine: snapshot.data![index]);
                 },
               ),
             );
