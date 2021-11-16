@@ -27,7 +27,7 @@ class _VendingMachinesCardsListState extends State<VendingMachinesCardsList> {
     List data = List.from(jsonDecode(testJson));
     List<VendingMachine> vendingMachineList =
         data.map((item) => VendingMachine.fromJson(item)).toList();
-    return vendingMachineList;
+    return Future.delayed(Duration(seconds: 5), () => vendingMachineList);
   }
 
   @override
@@ -49,8 +49,12 @@ class _VendingMachinesCardsListState extends State<VendingMachinesCardsList> {
           } else if (snapshot.hasError) {
             return Text('${snapshot.error}');
           }
-          // By default, show a loading spinner.
-          return const Text("Loading...");
+
+          return const Padding(
+            padding: EdgeInsets.all(50.0),
+            child: Center(
+                child: Text("Loading...")),
+          );
         });
   }
 }
