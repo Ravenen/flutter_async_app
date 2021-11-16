@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import '../common/orders_placed_bloc.dart';
 
 class OrdersPlacedCard extends StatelessWidget {
-  OrdersPlacedCard({Key? key}) : super(key: key);
+  const OrdersPlacedCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,8 @@ class OrdersPlacedCard extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Consumer<OrdersPlacedBloc>(builder: (context, _ordersPlacedBloc, child) {
+                Consumer<OrdersPlacedBloc>(
+                    builder: (context, _ordersPlacedBloc, child) {
                   return StreamBuilder<int>(
                       stream: _ordersPlacedBloc.ordersPlaced,
                       builder: (context, snapshot) {
