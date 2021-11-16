@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 
 import '../common/orders_placed_bloc.dart';
 
 class OrdersPlacedCard extends StatelessWidget {
   OrdersPlacedCard({Key? key}) : super(key: key);
-
-  final _bloc = OrdersPlacedBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -19,15 +18,16 @@ class OrdersPlacedCard extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                StreamBuilder<int>(
-                  stream: _bloc.ordersPlaced,
-                  builder: (context, snapshot) {
-                    return Text(
-                      "Orders placed: ${snapshot.data}",
-                      style: const TextStyle(fontSize: 16.0),
-                    );
-                  }
-                ),
+                Consumer<OrdersPlacedBloc>(builder: (context, _ordersPlacedBloc, child) {
+                  return StreamBuilder<int>(
+                      stream: _ordersPlacedBloc.ordersPlaced,
+                      builder: (context, snapshot) {
+                        return Text(
+                          "Orders placed: ${snapshot.data}",
+                          style: const TextStyle(fontSize: 16.0),
+                        );
+                      });
+                }),
                 const Text(
                   'during the app run',
                   style: TextStyle(color: Colors.grey, fontSize: 12.0),
