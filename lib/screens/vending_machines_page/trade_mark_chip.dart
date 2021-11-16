@@ -9,7 +9,7 @@ class TradeMarkChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(5),
+      margin: const EdgeInsets.symmetric(horizontal: 5),
       child: Chip(
         label: Text(tradeMark),
         padding: const EdgeInsets.symmetric(horizontal: 10.0),

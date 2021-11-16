@@ -17,6 +17,7 @@ class VendingMachineCard extends StatelessWidget {
         clipBehavior: Clip.hardEdge,
         child: Stack(children: <Widget>[
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
                 height: 200.0,
@@ -32,12 +33,11 @@ class VendingMachineCard extends StatelessWidget {
                   subtitle: Text(vendingMachine.address),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Row(
-                  children: vendingMachine.tradeMarks
-                      .map((tradeMark) => TradeMarkChip(tradeMark: tradeMark)).toList(),
-                ),
+              Wrap(
+                // spacing: 5,
+                children: vendingMachine.tradeMarks
+                    .map((tradeMark) => TradeMarkChip(tradeMark: tradeMark))
+                    .toList(),
               ),
             ],
           ),
