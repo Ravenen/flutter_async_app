@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_async_app/common/order.dart';
+import 'package:flutter_async_app/common/utils.dart';
 import 'package:flutter_async_app/common/vending_machine.dart';
 import 'package:flutter_async_app/common/vending_machine_api.dart';
 import 'package:flutter_async_app/screens/loading_text.dart';
@@ -11,6 +13,33 @@ class VendingMachineInfo extends StatelessWidget {
       : super(key: key);
 
   final int vendingMachineId;
+
+  List _buildOrders(List<Order> orders) {
+    return orders.reversed
+        .take(10)
+        .map((order) => Card(
+              child: ListTile(
+                leading: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(getHoursMinutesFromTimestamp(order.timestamp),
+                        style: const TextStyle(fontSize: 12)),
+                  ],
+                ),
+                // leading:  Text(getHoursMinutesFromTimestamp(order.timestamp)),
+                trailing: Text(order.price.toString()),
+                title: Text(order.productName),
+                subtitle: Text(order.tradeMark),
+              ),
+            ))
+        .toList();
+  }
+
+  List<TradeMarkChip> _buildTradingMarksChips(List<String> tradeMarks) {
+    return tradeMarks
+        .map((tradeMark) => TradeMarkChip(tradeMark: tradeMark))
+        .toList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,10 +83,7 @@ class VendingMachineInfo extends StatelessWidget {
                     const InfoText(text: "Trade Marks: "),
                     Wrap(
                       children: [
-                        ...vendingMachine.tradeMarks
-                            .map((tradeMark) =>
-                                TradeMarkChip(tradeMark: tradeMark))
-                            .toList()
+                        ..._buildTradingMarksChips(vendingMachine.tradeMarks)
                       ],
                     ),
                   ],
@@ -72,16 +98,7 @@ class VendingMachineInfo extends StatelessWidget {
                     ),
                   ),
                 ),
-                ...vendingMachine.orders.reversed
-                    .take(10)
-                    .map((order) => Card(
-                          child: ListTile(
-                            trailing: Text(order.price.toString()),
-                            title: Text(order.productName),
-                            subtitle: Text(order.tradeMark),
-                          ),
-                        ))
-                    .toList(),
+                ..._buildOrders(vendingMachine.orders),
               ],
             );
           } else if (snapshot.hasError) {
