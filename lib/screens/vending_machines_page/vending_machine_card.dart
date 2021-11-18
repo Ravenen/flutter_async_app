@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_async_app/common/vending_machine.dart';
+import 'package:flutter_async_app/screens/vending_machine_page/vending_machine_page.dart';
 import 'package:flutter_async_app/screens/vending_machines_page/trade_mark_chip.dart';
 
 class VendingMachineCard extends StatelessWidget {
@@ -45,7 +46,16 @@ class VendingMachineCard extends StatelessWidget {
             child: Material(
               color: Colors.transparent,
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => VendingMachinePage(
+                        vendingMachineId: vendingMachine.id,
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
           ),
