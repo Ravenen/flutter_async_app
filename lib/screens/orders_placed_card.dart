@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_async_app/common/orders_placed_event.dart';
+import 'package:flutter_async_app/common/bloc/orders_placed_event.dart';
 import 'package:provider/provider.dart';
 
-import '../common/orders_placed_bloc.dart';
+import '../common/bloc/orders_placed_bloc.dart';
 
 class OrdersPlacedCard extends StatelessWidget {
   const OrdersPlacedCard({Key? key}) : super(key: key);
@@ -25,7 +25,7 @@ class OrdersPlacedCard extends StatelessWidget {
                       stream: _ordersPlacedBloc.ordersPlaced,
                       builder: (context, snapshot) {
                         return Text(
-                          "Orders placed: ${snapshot.hasData ? snapshot.data : 0}",
+                          "Orders placed: ${snapshot.data ?? _ordersPlacedBloc.lastOrdersPlaced}",
                           style: const TextStyle(fontSize: 16.0),
                         );
                       });

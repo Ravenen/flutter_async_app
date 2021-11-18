@@ -1,3 +1,5 @@
+import 'package:flutter_async_app/common/data/order.dart';
+
 class VendingMachine {
   final int id;
   final String name;
@@ -6,15 +8,17 @@ class VendingMachine {
   final String imageUrl;
   final double amountOfMoney;
   final List<String> tradeMarks;
+  final List<Order> orders;
 
-  const VendingMachine(
+  VendingMachine(
       {required this.id,
       required this.name,
       required this.address,
       required this.gpsCoordinates,
       required this.imageUrl,
       required this.amountOfMoney,
-      required this.tradeMarks});
+      required this.tradeMarks,
+      this.orders = const []});
 
   factory VendingMachine.fromJson(Map<String, dynamic> json) {
     return VendingMachine(
@@ -29,7 +33,10 @@ class VendingMachine {
         gpsCoordinates: json["gps_coordinates"],
         imageUrl: json["image_url"],
         amountOfMoney: json["amount_of_money"],
-        tradeMarks: List.from(json["trade_marks"]));
+        tradeMarks: List.from(json["trade_marks"]),
+        orders: List.from(json["orders"] ?? [])
+            .map((order) => Order.fromJson(order))
+            .toList());
   }
 
   @override

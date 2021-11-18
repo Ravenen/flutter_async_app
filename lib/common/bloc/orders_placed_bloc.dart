@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:async/async.dart';
-import 'package:flutter_async_app/common/orders_placed_event.dart';
+import 'package:flutter_async_app/common/bloc/orders_placed_event.dart';
 
 class OrdersPlacedBloc {
   int _ordersPlaced = 0;
@@ -13,6 +13,8 @@ class OrdersPlacedBloc {
 
   Stream<int> get ordersPlaced => StreamGroup.merge(
       [_ordersPlacedStateController.stream, _createIncrementingStream()]);
+
+  int get lastOrdersPlaced => _ordersPlaced;
 
   final _ordersPlacedEventController = StreamController<OrdersPlacedEvent>();
 
