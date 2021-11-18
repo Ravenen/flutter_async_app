@@ -14,6 +14,8 @@ class OrdersPlacedBloc {
   Stream<int> get ordersPlaced => StreamGroup.merge(
       [_ordersPlacedStateController.stream, _createIncrementingStream()]);
 
+  int get lastOrdersPlaced => _ordersPlaced;
+
   final _ordersPlacedEventController = StreamController<OrdersPlacedEvent>();
 
   StreamSink<OrdersPlacedEvent> get ordersPlacedEventSink =>

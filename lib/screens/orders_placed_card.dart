@@ -25,7 +25,7 @@ class OrdersPlacedCard extends StatelessWidget {
                       stream: _ordersPlacedBloc.ordersPlaced,
                       builder: (context, snapshot) {
                         return Text(
-                          "Orders placed: ${snapshot.data ?? ""}",
+                          "Orders placed: ${snapshot.data ?? _ordersPlacedBloc.lastOrdersPlaced}",
                           style: const TextStyle(fontSize: 16.0),
                         );
                       });
