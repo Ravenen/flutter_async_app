@@ -35,8 +35,6 @@ class VendingMachineInfo extends StatelessWidget {
                     ),
                   ),
                 ),
-                // Center(
-                //   heightFactor: 1,
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Text(
@@ -61,9 +59,29 @@ class VendingMachineInfo extends StatelessWidget {
                                 TradeMarkChip(tradeMark: tradeMark))
                             .toList()
                       ],
-                    )
+                    ),
                   ],
-                )
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 5),
+                  child: Text(
+                    "Orders",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17,
+                    ),
+                  ),
+                ),
+                ...vendingMachine.orders.reversed
+                    .take(10)
+                    .map((order) => Card(
+                          child: ListTile(
+                            trailing: Text(order.price.toString()),
+                            title: Text(order.productName),
+                            subtitle: Text(order.tradeMark),
+                          ),
+                        ))
+                    .toList(),
               ],
             );
           } else if (snapshot.hasError) {

@@ -34,7 +34,7 @@ class VendingMachine {
         imageUrl: json["image_url"],
         amountOfMoney: json["amount_of_money"],
         tradeMarks: List.from(json["trade_marks"]),
-        orders: List.from(json["orders"])
+        orders: List.from(json["orders"] ?? [])
             .map((order) => Order.fromJson(order))
             .toList());
   }
