@@ -1,4 +1,4 @@
-import 'package:flutter_async_app/common/order.dart';
+import 'package:flutter_async_app/common/data/order.dart';
 
 class VendingMachine {
   final int id;

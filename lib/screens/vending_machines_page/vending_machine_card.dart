@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_async_app/common/vending_machine.dart';
+import 'package:flutter_async_app/common/data/vending_machine.dart';
 import 'package:flutter_async_app/screens/vending_machine_page/vending_machine_page.dart';
 import 'package:flutter_async_app/screens/trade_mark_chip.dart';
 

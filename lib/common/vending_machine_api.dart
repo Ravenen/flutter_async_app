@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_async_app/common/constants.dart';
-import 'package:flutter_async_app/common/vending_machine.dart';
+import 'package:flutter_async_app/common/data/vending_machine.dart';
 import 'package:http/http.dart' as http;
 
 class VendingMachineApi {
