@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_async_app/common/vending_machine_api.dart';
+import 'package:flutter_async_app/screens/loading_text.dart';
 
 class VendingMachineInfo extends StatelessWidget {
   const VendingMachineInfo({Key? key, required this.vendingMachineId})
@@ -18,10 +19,7 @@ class VendingMachineInfo extends StatelessWidget {
             return Text('${snapshot.error}');
           }
 
-          return const Padding(
-            padding: EdgeInsets.all(50.0),
-            child: Center(child: Text("Loading...")),
-          );
+          return const LoadingText();
         });
   }
 }
