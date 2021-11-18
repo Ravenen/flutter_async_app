@@ -13,9 +13,9 @@ class VendingMachinesPage extends StatelessWidget {
         child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
             child: Column(
-              children: [
+              children: const [
                 OrdersPlacedCard(),
-                const VendingMachinesCardsList()
+                VendingMachinesCardsList()
               ],
             )),
       ),
