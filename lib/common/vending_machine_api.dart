@@ -19,4 +19,13 @@ class VendingMachineApi {
       throw Exception('Failed to load vending machines');
     }
   }
+
+  static Future<VendingMachine> getById(int id) async {
+    final response = await http.get(Uri.parse("$_baseUrl$_path/$id"));
+    if (response.statusCode == 200) {
+      return VendingMachine.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception('Failed to load vending machines');
+    }
+  }
 }
