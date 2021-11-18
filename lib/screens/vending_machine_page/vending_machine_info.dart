@@ -26,8 +26,7 @@ class VendingMachineInfo extends StatelessWidget {
                         style: const TextStyle(fontSize: 12)),
                   ],
                 ),
-                // leading:  Text(getHoursMinutesFromTimestamp(order.timestamp)),
-                trailing: Text(order.price.toString()),
+                trailing: Text(formatMoneyToUah(order.price)),
                 title: Text(order.productName),
                 subtitle: Text(order.tradeMark),
               ),
@@ -82,7 +81,7 @@ class VendingMachineInfo extends StatelessWidget {
                         heading: "GPS", value: vendingMachine.gpsCoordinates),
                     InfoText(
                         heading: "Money",
-                        value: vendingMachine.amountOfMoney.toString()),
+                        value: formatMoneyToUah(vendingMachine.amountOfMoney)),
                     const InfoText(heading: "Trade Marks"),
                     Wrap(
                       children: [
