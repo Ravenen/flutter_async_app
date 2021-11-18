@@ -77,10 +77,13 @@ class VendingMachineInfo extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    InfoText(text: "Address: ${vendingMachine.address}"),
-                    InfoText(text: "GPS: ${vendingMachine.gpsCoordinates}"),
-                    InfoText(text: "Money: ${vendingMachine.amountOfMoney}"),
-                    const InfoText(text: "Trade Marks: "),
+                    InfoText(heading: "Address", value: vendingMachine.address),
+                    InfoText(
+                        heading: "GPS", value: vendingMachine.gpsCoordinates),
+                    InfoText(
+                        heading: "Money",
+                        value: vendingMachine.amountOfMoney.toString()),
+                    const InfoText(heading: "Trade Marks"),
                     Wrap(
                       children: [
                         ..._buildTradingMarksChips(vendingMachine.tradeMarks)
