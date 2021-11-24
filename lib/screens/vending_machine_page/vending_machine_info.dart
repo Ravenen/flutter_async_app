@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_async_app/common/bloc/vending_machines_bloc.dart';
+import 'package:flutter_async_app/common/bloc/vending_machines_event.dart';
+import 'package:flutter_async_app/common/bloc/vending_machines_state.dart';
 import 'package:flutter_async_app/common/data/order.dart';
-import 'package:flutter_async_app/common/utils.dart';
 import 'package:flutter_async_app/common/data/vending_machine.dart';
-import 'package:flutter_async_app/common/vending_machine_api.dart';
+import 'package:flutter_async_app/common/utils.dart';
 import 'package:flutter_async_app/screens/loading_text.dart';
 import 'package:flutter_async_app/screens/trade_mark_chip.dart';
 import 'package:flutter_async_app/screens/vending_machine_page/info_text.dart';
@@ -42,11 +44,17 @@ class VendingMachineInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<VendingMachine>(
-        future: VendingMachineApi.getById(vendingMachineId),
+    VendingMachinesBloc _vendingMachinesBloc = VendingMachinesBloc();
+    _vendingMachinesBloc.singleVendingMachineEventSink
+        .add(SingleVendingMachineLoadEvent(id: vendingMachineId));
+
+    return StreamBuilder<SingleVendingMachineState>(
+        stream: _vendingMachinesBloc.singleVendingMachinesStateStream,
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            VendingMachine vendingMachine = snapshot.data!;
+          if (snapshot.data is SingleVendingMachineLoadedState) {
+            VendingMachine vendingMachine =
+                (snapshot.data as SingleVendingMachineLoadedState)
+                    .vendingMachine;
             return Column(
               children: [
                 Container(
@@ -103,11 +111,13 @@ class VendingMachineInfo extends StatelessWidget {
                 ..._buildOrders(vendingMachine.orders),
               ],
             );
-          } else if (snapshot.hasError) {
+          } else if (snapshot.data is SingleVendingMachineLoadingState) {
+            return const LoadingText();
+          }
+          else if (snapshot.hasError) {
             return Text('${snapshot.error}');
           }
-
-          return const LoadingText();
+          return const Text("Undefined");
         });
   }
 }
