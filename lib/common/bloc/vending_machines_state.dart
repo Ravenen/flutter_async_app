@@ -10,12 +10,12 @@ class VendingMachinesLoadedState extends VendingMachinesState {
   VendingMachinesLoadedState({required this.vendingMachines});
 }
 
-class VendingMachineState {}
+class SingleVendingMachineState {}
 
-class VendingMachineLoadingState extends VendingMachineState {}
+class SingleVendingMachineLoadingState extends SingleVendingMachineState {}
 
-class VendingMachineLoadedState extends VendingMachineState {
+class SingleVendingMachineLoadedState extends SingleVendingMachineState {
   final VendingMachine vendingMachine;
 
-  VendingMachineLoadedState({required this.vendingMachine});
+  SingleVendingMachineLoadedState({required this.vendingMachine});
 }
