@@ -34,6 +34,8 @@ class VendingMachinesBloc {
   VendingMachinesBloc() {
     _vendingMachinesEventController.stream
         .listen(_mapVendingMachinesEventToState);
+    _singleVendingMachineEventController.stream
+        .listen(_mapSingleVendingMachineEventToState);
   }
 
   Future<void> _mapVendingMachinesEventToState(
@@ -47,5 +49,18 @@ class VendingMachinesBloc {
           VendingMachinesLoadedState(vendingMachines: _vendingMachines);
     }
     _vendingMachinesStateController.add(_vendingMachinesState);
+  }
+
+  Future<void> _mapSingleVendingMachineEventToState(
+      SingleVendingMachineEvent event) async {
+    if (event is SingleVendingMachineLoadEvent) {
+      _singleVendingMachineState = SingleVendingMachineLoadingState();
+      _singleVendingMachineStateController.add(_singleVendingMachineState);
+      final VendingMachine _vendingMachine =
+          await VendingMachineApi.getById(event.id);
+      _singleVendingMachineState =
+          SingleVendingMachineLoadedState(vendingMachine: _vendingMachine);
+    }
+    _singleVendingMachineStateController.add(_singleVendingMachineState);
   }
 }
