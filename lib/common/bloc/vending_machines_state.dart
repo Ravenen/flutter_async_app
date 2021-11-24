@@ -2,6 +2,8 @@ import 'package:flutter_async_app/common/data/vending_machine.dart';
 
 class VendingMachinesState {}
 
+class VendingMachinesEmptyState extends VendingMachinesState {}
+
 class VendingMachinesLoadingState extends VendingMachinesState {}
 
 class VendingMachinesLoadedState extends VendingMachinesState {
@@ -11,6 +13,8 @@ class VendingMachinesLoadedState extends VendingMachinesState {
 }
 
 class SingleVendingMachineState {}
+
+class SingleVendingMachineEmptyState extends SingleVendingMachineState {}
 
 class SingleVendingMachineLoadingState extends SingleVendingMachineState {}
 
